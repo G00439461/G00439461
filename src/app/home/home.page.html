@@ -19,11 +19,29 @@
     <ion-input
       label="Ingredients"
       labelPlacement="stacked"
-      placeholder="e.g. chicken, rice, tomato">
+      placeholder="e.g. chicken, rice, tomato"
+      [(ngModel)]="ingredientQuery">
     </ion-input>
   </ion-item>
 
-  <ion-button expand="block" class="ion-margin-top">
+  <ion-button expand="block" class="ion-margin-top" (click)="onSearch()">
     Search
   </ion-button>
+
+
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <ion-spinner *ngIf="isLoading"></ion-spinner>
+
+  <ion-list *ngIf="!isLoading && recipes.length > 0">
+    <ion-item *ngFor="let r of recipes">
+      <ion-thumbnail slot="start">
+        <img [src]="r.image" [alt]="r.title" />
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2>{{ r.title }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
