@@ -6,18 +6,26 @@
 
 <ion-content class="ion-padding">
   <ion-list>
-    <ion-radio-group value="metric">
+    <ion-radio-group
+      [value]="measurement"
+      (ionChange)="onMeasurementChange($event)">
+
       <ion-list-header>
         <ion-label>Measurement</ion-label>
       </ion-list-header>
 
       <ion-item>
-        <ion-radio value="metric" justify="space-between">Metric</ion-radio>
+        <ion-radio value="metric" justify="space-between">
+          Metric
+        </ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-radio value="us" justify="space-between">US</ion-radio>
+        <ion-radio value="us" justify="space-between">
+          US
+        </ion-radio>
       </ion-item>
+
     </ion-radio-group>
   </ion-list>
 </ion-content>

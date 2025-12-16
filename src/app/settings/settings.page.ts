@@ -30,4 +30,21 @@ import {
     IonRadio
   ],
 })
-export class SettingsPage {}
+export class SettingsPage {
+
+  measurement: 'metric' | 'us' = 'metric';
+
+  constructor() {}
+
+  ionViewWillEnter() {
+    const saved = localStorage.getItem('measurement');
+    if (saved === 'metric' || saved === 'us') {
+      this.measurement = saved;
+    }
+  }
+
+  onMeasurementChange(event: any) {
+    this.measurement = event.detail.value;
+    localStorage.setItem('measurement', this.measurement);
+  }
+}
