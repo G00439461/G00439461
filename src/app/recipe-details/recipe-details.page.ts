@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   IonHeader,
+  IonButtons,
+  IonBackButton,
   IonToolbar,
   IonTitle,
   IonContent,
@@ -24,6 +26,8 @@ import { FavouritesService } from '../services/favourites';
   standalone: true,
   imports: [
     CommonModule,
+    IonButtons,
+    IonBackButton,
     IonHeader,
     IonToolbar,
     IonTitle,
