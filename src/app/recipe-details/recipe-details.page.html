@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    
+
     <ion-title>Recipe Details</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,6 +15,8 @@
 
   <div *ngIf="!isLoading && recipe">
     <h2>{{ recipe.title }}</h2>
+    <p>Units: {{ units === 'us' ? 'US' : 'Metric' }}</p>
+
 
     <ion-button expand="block" (click)="toggleFavourite()">
       {{ isFav ? 'Remove from favourites' : 'Add to favourites' }}

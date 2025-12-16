@@ -46,6 +46,9 @@ export class RecipeDetailsPage {
   errorMessage = '';
   isFav = false;
 
+  // ✅ New: track which units are being used
+  units: 'metric' | 'us' = 'metric';
+
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
@@ -65,11 +68,12 @@ export class RecipeDetailsPage {
       return;
     }
 
-    const units = localStorage.getItem('measurement') === 'us' ? 'us' : 'metric';
+    // ✅ New: store units on the class so the HTML can display it
+    this.units = localStorage.getItem('measurement') === 'us' ? 'us' : 'metric';
 
     this.isLoading = true;
     try {
-      this.recipe = await this.recipeService.getRecipeDetails(id, units);
+      this.recipe = await this.recipeService.getRecipeDetails(id, this.units);
 
       // Update favourite state after loading the recipe
       this.isFav = this.favouritesService.isFavourite(this.recipe.id);
