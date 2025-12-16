@@ -12,6 +12,10 @@
   <div *ngIf="!isLoading && recipe">
     <h2>{{ recipe.title }}</h2>
 
+    <ion-button expand="block" (click)="toggleFavourite()">
+      {{ isFav ? 'Remove from favourites' : 'Add to favourites' }}
+    </ion-button>
+
     <ion-img [src]="recipe.image" [alt]="recipe.title"></ion-img>
 
     <h3>Ingredients</h3>
