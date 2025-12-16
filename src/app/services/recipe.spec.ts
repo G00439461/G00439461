@@ -1,31 +1,20 @@
-import { Injectable } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-export interface RecipeSearchResult {
-  id: number;
-  title: string;
-  image: string;
-}
+import { RecipeService } from './recipe';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class RecipeService {
-  private readonly apiKey = '70759a4f7911402abcc53d3c51d3b759';
-  private readonly baseUrl = 'https://api.spoonacular.com';
+describe('RecipeService', () => {
+  let service: RecipeService;
 
-  async searchRecipesByIngredients(query: string): Promise<RecipeSearchResult[]> {
-    const url =
-      `${this.baseUrl}/recipes/complexSearch` +
-      `?query=${encodeURIComponent(query)}` +
-      `&apiKey=${this.apiKey}`;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+    });
 
-    const response = await fetch(url);
+    service = TestBed.inject(RecipeService);
+  });
 
-    if (!response.ok) {
-      throw new Error(`Spoonacular search failed: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return (data.results ?? []) as RecipeSearchResult[];
-  }
-}
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});

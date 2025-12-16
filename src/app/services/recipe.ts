@@ -8,6 +8,20 @@ export interface RecipeSearchResult {
   image: string;
 }
 
+export interface RecipeIngredient {
+  name: string;
+  amount: number;
+  unit: string;
+}
+
+export interface RecipeDetails {
+  id: number;
+  title: string;
+  image: string;
+  instructions?: string;
+  extendedIngredients: RecipeIngredient[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -23,9 +37,31 @@ export class RecipeService {
       `?query=${encodeURIComponent(query)}` +
       `&apiKey=${this.apiKey}`;
 
-    const response$ = this.http.get<any>(url);
-    const data = await firstValueFrom(response$);
-
+    const data = await firstValueFrom(this.http.get<any>(url));
     return (data.results ?? []) as RecipeSearchResult[];
+  }
+
+  async getRecipeDetails(id: number, units: 'metric' | 'us'): Promise<RecipeDetails> {
+    const url =
+      `${this.baseUrl}/recipes/${id}/information` +
+      `?includeNutrition=false` +
+      `&units=${units}` +
+      `&apiKey=${this.apiKey}`;
+
+    const data = await firstValueFrom(this.http.get<any>(url));
+
+    const ingredients: RecipeIngredient[] = (data.extendedIngredients ?? []).map((i: any) => ({
+      name: i.name,
+      amount: i.measures?.[units]?.amount ?? i.amount ?? 0,
+      unit: i.measures?.[units]?.unitShort ?? i.unit ?? '',
+    }));
+
+    return {
+      id: data.id,
+      title: data.title,
+      image: data.image,
+      instructions: data.instructions,
+      extendedIngredients: ingredients,
+    };
   }
 }
