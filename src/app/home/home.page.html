@@ -15,6 +15,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <!-- Search input -->
   <ion-item>
     <ion-input
       label="Ingredients"
@@ -24,15 +25,21 @@
     </ion-input>
   </ion-item>
 
-  <ion-button expand="block" class="ion-margin-top" (click)="onSearch()">
+  <!-- Search button -->
+  <ion-button
+    expand="block"
+    class="ion-margin-top"
+    (click)="onSearch()">
     Search
   </ion-button>
 
-
+  <!-- Error message -->
   <p *ngIf="errorMessage">{{ errorMessage }}</p>
 
+  <!-- Loading spinner -->
   <ion-spinner *ngIf="isLoading"></ion-spinner>
 
+  <!-- Results list -->
   <ion-list *ngIf="!isLoading && recipes.length > 0">
     <ion-item *ngFor="let r of recipes">
       <ion-thumbnail slot="start">
@@ -41,6 +48,13 @@
 
       <ion-label>
         <h2>{{ r.title }}</h2>
+
+        <ion-button
+          size="small"
+          fill="outline"
+          [routerLink]="['/recipe', r.id]">
+          Details
+        </ion-button>
       </ion-label>
     </ion-item>
   </ion-list>
