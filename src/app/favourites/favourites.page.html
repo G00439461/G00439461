@@ -1,26 +1,32 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Favourites</ion-title>
+    <!-- [REQ] Favourites page required to list saved recipes and allow removal. :contentReference[oaicite:1]{index=1} -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <p *ngIf="favourites.length === 0">No favourites yet.</p>
+  <!-- [REQ] Handle the “no favourites” state so the page doesn’t look broken/empty. -->
 
   <ion-list *ngIf="favourites.length > 0">
+    <!-- [REQ] Display favourite items and allow navigation to details and removal. :contentReference[oaicite:2]{index=2} -->
     <ion-item *ngFor="let f of favourites">
       <ion-thumbnail slot="start">
         <img [src]="f.image" [alt]="f.title" />
+        <!-- [REQ] Show image + title for each saved favourite recipe. -->
       </ion-thumbnail>
 
       <ion-label>
         <h2>{{ f.title }}</h2>
+        <!-- [REQ] Title shown for each favourite item. -->
 
         <ion-button
           size="small"
           fill="outline"
           [routerLink]="['/recipe', f.id]">
           Details
+          <!-- [REQ] Navigate to Recipe Details page for the favourite item (using its id). -->
         </ion-button>
 
         <ion-button
@@ -28,6 +34,7 @@
           color="danger"
           (click)="remove(f.id)">
           Remove
+          <!-- [REQ] Removing favourites is required (ability to delete from saved list). :contentReference[oaicite:3]{index=3} -->
         </ion-button>
       </ion-label>
     </ion-item>

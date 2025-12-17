@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Settings</ion-title>
+    <!-- [REQ] Settings page required to switch between Metric and US measurements. :contentReference[oaicite:5]{index=5} -->
   </ion-toolbar>
 </ion-header>
 
@@ -9,20 +10,25 @@
     <ion-radio-group
       [value]="measurement"
       (ionChange)="onMeasurementChange($event)">
+      <!-- [REQ] Measurement option must be selectable by the user.
+           [REQ] Persisting choice is required, so we also bind to the current value. :contentReference[oaicite:6]{index=6} -->
 
       <ion-list-header>
         <ion-label>Measurement</ion-label>
+        <!-- [REQ] Clear label for the settings group. -->
       </ion-list-header>
 
       <ion-item>
         <ion-radio value="metric" justify="space-between">
           Metric
+          <!-- [REQ] Option 1: Metric (grams/ml etc.) -->
         </ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-radio value="us" justify="space-between">
           US
+          <!-- [REQ] Option 2: US units (oz/cups etc.) -->
         </ion-radio>
       </ion-item>
 

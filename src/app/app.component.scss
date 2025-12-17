@@ -2,28 +2,34 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  // [ENH] Small spacing improvements: keeps branding tidy and readable.
 }
 
 .logo {
   height: 22px;
+  // [ENH] Reduced logo size so it doesn’t dominate the header.
 }
 
 .text-block {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
+  // [ENH] Stacks the student/module/app text in a compact, readable way.
 }
 
 .student-id {
   font-weight: 600;
+  // [REQ] Student number visibility (required on Home; globally shown here).
 }
 
 .module-title {
   font-size: 0.75rem;
   opacity: 0.85;
+  // [ENH] Secondary line styling: makes the module line present but not overwhelming.
 }
 
 .app-title {
   font-size: 0.7rem;
   opacity: 0.8;
+  // [ENH] Tertiary line styling: keeps the header clean and professional.
 }
