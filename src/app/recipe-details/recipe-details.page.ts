@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   IonHeader,
+  IonToast,
   IonButtons,
   IonBackButton,
   IonToolbar,
@@ -38,6 +39,7 @@ import { FavouritesService } from '../services/favourites';
     IonLabel,
     IonImg,
     IonButton,
+    IonToast, // ✅ needed because we use <ion-toast> in the HTML
   ],
 })
 export class RecipeDetailsPage {
@@ -46,8 +48,12 @@ export class RecipeDetailsPage {
   errorMessage = '';
   isFav = false;
 
-  // ✅ New: track which units are being used
+  // track which units are being used
   units: 'metric' | 'us' = 'metric';
+
+  // ✅ Toast state
+  toastOpen = false;
+  toastMessage = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -68,7 +74,6 @@ export class RecipeDetailsPage {
       return;
     }
 
-    // ✅ New: store units on the class so the HTML can display it
     this.units = localStorage.getItem('measurement') === 'us' ? 'us' : 'metric';
 
     this.isLoading = true;
@@ -87,10 +92,16 @@ export class RecipeDetailsPage {
   toggleFavourite(): void {
     if (!this.recipe) return;
 
-    this.isFav = this.favouritesService.toggle({
+    const nowFav = this.favouritesService.toggle({
       id: this.recipe.id,
       title: this.recipe.title,
       image: this.recipe.image,
     });
+
+    this.isFav = nowFav;
+
+    // ✅ Toast feedback
+    this.toastMessage = nowFav ? 'Added to favourites' : 'Removed from favourites';
+    this.toastOpen = true;
   }
 }

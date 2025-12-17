@@ -20,6 +20,7 @@ export interface RecipeDetails {
   image: string;
   instructions?: string;
   extendedIngredients: RecipeIngredient[];
+  steps: string[]; // ✅ new: numbered steps
 }
 
 @Injectable({
@@ -56,12 +57,16 @@ export class RecipeService {
       unit: i.measures?.[units]?.unitShort ?? i.unit ?? '',
     }));
 
+    const steps: string[] =
+      (data.analyzedInstructions?.[0]?.steps ?? []).map((s: any) => s.step);
+
     return {
       id: data.id,
       title: data.title,
       image: data.image,
       instructions: data.instructions,
       extendedIngredients: ingredients,
+      steps,
     };
   }
 }
