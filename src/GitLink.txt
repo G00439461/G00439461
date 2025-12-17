@@ -1,0 +1,10 @@
+Mobile Applications Development – Final Project
+
+Student ID: G00439461
+Module: 25-26: 9149 – MOBILE APPLICATIONS DEVELOPMENT
+
+GitHub Repository Link:
+https://github.com/G00439461/G00439461
+
+This repository contains the full source code for the Ionic Recipe Finder application,
+including all required functionality, enhancements, and supporting files.

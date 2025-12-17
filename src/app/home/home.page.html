@@ -1,17 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>G00439461</ion-title>
-    <!-- [REQ] Student number must be displayed on the Home page. :contentReference[oaicite:6]{index=6} -->
+    <!-- [REQ] Student number must be displayed on the Home page. -->
 
     <ion-buttons slot="end">
       <ion-button aria-label="Favourites" routerLink="/favourites">
         <ion-icon name="heart-outline"></ion-icon>
-        <!-- [REQ] Favourites icon required on Home to access favourites page. :contentReference[oaicite:7]{index=7} -->
+        <!-- [REQ] Favourites icon required on Home to access favourites page. -->
       </ion-button>
 
       <ion-button aria-label="Settings" routerLink="/settings">
         <ion-icon name="settings-outline"></ion-icon>
-        <!-- [REQ] Settings icon required on Home to access settings page. :contentReference[oaicite:8]{index=8} -->
+        <!-- [REQ] Settings icon required on Home to access settings page. -->
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -29,7 +29,7 @@
     </p>
     <p>
       Tip: you can add multiple ingredients separated by commas (e.g. <strong>chicken, rice, tomato</strong>).
-      <!-- [REQ] Multi-ingredient search via comma-separated query is part of the Spoonacular query behaviour. :contentReference[oaicite:9]{index=9} -->
+      <!-- [REQ] Multi-ingredient search via comma-separated query is part of the Spoonacular query behaviour. -->
       <!-- [ENH] Providing an example is UX polish beyond the bare requirement. -->
     </p>
   </div>
@@ -40,7 +40,7 @@
       labelPlacement="stacked"
       placeholder="e.g. chicken, rice, tomato"
       [(ngModel)]="ingredientQuery">
-      <!-- [REQ] Home page must accept ingredient(s) input for Spoonacular search. :contentReference[oaicite:10]{index=10} -->
+      <!-- [REQ] Home page must accept ingredient(s) input for Spoonacular search. -->
       <!-- [ENH] Label + placeholder improve clarity and accessibility. -->
     </ion-input>
   </ion-item>
@@ -51,24 +51,30 @@
     class="ion-margin-top"
     (click)="onSearch()">
     Search
-    <!-- [REQ] User must be able to trigger a Spoonacular search from Home. :contentReference[oaicite:11]{index=11} -->
+    <!-- [REQ] User must be able to trigger a Spoonacular search from Home. -->
   </ion-button>
 
   <!-- Error message -->
   <p *ngIf="errorMessage">{{ errorMessage }}</p>
-  <!-- [REQ] Good practice: show user-friendly feedback on validation/API errors. -->
+  <!-- [REQ] Show user-friendly feedback on validation/API errors. -->
 
   <!-- Loading spinner -->
   <ion-spinner *ngIf="isLoading"></ion-spinner>
   <!-- [ENH] Loading indicator improves perceived performance and UX during API calls. -->
 
+  <!-- No results found state -->
+  <p *ngIf="!isLoading && recipes.length === 0 && !errorMessage">
+    No recipes found for the given ingredients.
+  </p>
+  <!-- [ENH] Clear feedback when API returns 0 results, avoids a “blank page” feeling. -->
+
   <!-- Results list -->
   <ion-list *ngIf="!isLoading && recipes.length > 0">
-    <!-- [REQ] Home page must display recipe results returned by Spoonacular search. :contentReference[oaicite:12]{index=12} -->
+    <!-- [REQ] Home page must display recipe results returned by Spoonacular search. -->
     <ion-item *ngFor="let r of recipes">
       <ion-thumbnail slot="start">
         <img [src]="r.image" [alt]="r.title" />
-        <!-- [REQ] Showing image + title matches typical recipe results and improves identification. -->
+        <!-- [REQ] Showing image + title improves identification and usability. -->
       </ion-thumbnail>
 
       <ion-label>
@@ -80,8 +86,8 @@
           fill="outline"
           [routerLink]="['/recipe', r.id]">
           Details
-          <!-- [REQ] Navigation to Recipe Details page by recipe ID. :contentReference[oaicite:13]{index=13} -->
-          <!-- [ENH] Using a button instead of making the whole item clickable is a clear UI choice. -->
+          <!-- [REQ] Navigation to Recipe Details page by recipe ID. -->
+          <!-- [ENH] Clear call-to-action button for details. -->
         </ion-button>
       </ion-label>
     </ion-item>
