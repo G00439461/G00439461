@@ -1,3 +1,39 @@
 <ion-app>
+  <!-- Global Header -->
+  <ion-header>
+    <ion-toolbar>
+
+      <ion-title size="small">
+        <div class="header-container">
+          <img src="assets/atu-logo.png" alt="ATU Logo" class="logo" />
+
+          <div class="text-block">
+            <div class="student-id">G00439461</div>
+            <div class="module-title">
+              25-26: 9149 — MOBILE APPLICATIONS DEVELOPMENT : Final Project
+            </div>
+            <div class="app-title">Recipe Finder Ionic App</div>
+          </div>
+        </div>
+      </ion-title>
+
+      <ion-buttons slot="end">
+        <ion-button routerLink="/">Home</ion-button>
+
+        <ion-button routerLink="/favourites" aria-label="Favourites">
+          <ion-icon name="heart-outline"></ion-icon>
+          Favourites
+        </ion-button>
+
+        <ion-button routerLink="/settings" aria-label="Settings">
+          <ion-icon name="settings-outline"></ion-icon>
+          Settings
+        </ion-button>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Pages -->
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
