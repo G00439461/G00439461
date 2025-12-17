@@ -1,0 +1,22 @@
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.title-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.footer-logo {
+  height: 26px;
+}
