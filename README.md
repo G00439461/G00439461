@@ -105,3 +105,17 @@ https://github.com/G00439461/G00439461
 - The project was developed and tested using Visual Studio Code
 - All required functionality has been implemented
 - Additional enhancements were added to improve usability and presentation
+
+## Use of Artificial Intelligence (AI)
+
+AI tools were used responsibly and transparently throughout the development of this project as a learning aid, in line with academic integrity guidelines.
+
+Specifically, AI was used to:
+
+- Guide the implementation of application features and development steps
+- Assist with troubleshooting errors and resolving technical issues
+- Help review and improve code readability through comments and explanations
+- Correct grammar (specially on commenting as English is not my native language)
+
+All code was written, tested, and understood by the student, and AI tools were used to support learning rather than replace it.
+The final implementation reflects the student’s own understanding and decision-making.
